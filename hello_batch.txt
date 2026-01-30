@@ -1,0 +1,110 @@
+
+Reading the Value of a Variable
+ref: http://steve-jansen.github.io/guides/windows-batch-scripting/part-2-variables.html
+C:\> SET foo=bar
+C:\> ECHO %foo%
+bar
+
+find string in file
+  FINDSTR "34308cfb1039f9e9a002055bbd304821" md5_%count%.txt
+  if %ERRORLEVEL% == 0 (
+    goto ok2
+  )
+  echo "Not found"
+  pause
+  
+:ok2
+echo "found"
+
+
+Do some operations for each files in current folder:
+ref: https://superuser.com/questions/1249377/how-to-generate-md5-hash-value-for-multiple-files-in-a-folder-using-cmd
+for %%f in (*) do (
+certutil -hashfile "%%f" MD5
+)
+
+loop
+set /a count = 1
+
+:loop_label
+  set /a count += 1
+  ECHO %count%
+  
+goto loop_label
+
+************************************************************
+How about for loop???
+set /a count = 0
+
+adb shell "/data/local/tmp/display_pattern.sh"
+
+timeout 3
+
+:另外一種delay的方法
+ping 127.0.0.1 -n 5 -w 1000 > nul
+:但是-n後面看起來不能是1 (why?)
+
+:loop_label
+  set /a count += 1
+  adb shell "screencap -p /mnt/user/f%count%.png"
+  echo %count%
+  
+  adb pull /mnt/user/f%count%.png f%count%.png
+  
+  if %count% equ 30 goto leave_loop
+  
+goto loop_label
+
+:leave_loop
+
+
+ref: https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7
+CertUtil is a pre-installed Windows utility that can be used to generate hash checksums:
+
+certUtil -hashfile pathToFileToCheck [HashAlgorithm]
+HashAlgorithm choices: MD2 MD4 MD5 SHA1 SHA256 SHA384 SHA512
+
+So for example, the following generates an MD5 checksum for the file C:\TEMP\MyDataFile.img:
+
+  CertUtil -hashfile C:\TEMP\MyDataFile.img MD5
+To get output similar to *Nix systems you can add some PowerShell magic:
+
+$(CertUtil -hashfile C:\TEMP\MyDataFile.img MD5)[1] -replace " ",""
+
+
+kill process
+kill RDP:
+taskkill.exe /f /im rdpclip.exe 
+
+kill TRACE32:
+taskkill -f /IM "t32marm.exe"
+
+******************************************************************************
+::change this cmd shell to use UTF-8
+chcp 65001
+
+dir "*.mp4" /s /b /a:-d > test.txt
+::/s    Subdirectories
+::/b    Bare format (list only)
+::/a:-d Attribute:減號是排除，d是Directory
+
+setlocal enabledelayedexpansion
+set INPUT_FILE="test.txt"
+
+set lines=0
+for /f "usebackq" %%a in (%INPUT_FILE%) do set /a lines+=1
+echo %RANDOM% >nul
+set /a randnum=%RANDOM% * !lines! / 32768 + 1
+
+set lines=0
+for /f "usebackq tokens=*" %%a in (%INPUT_FILE%) do (
+    set /a lines+=1
+    if !lines!==!randnum! set randline=%%a
+)
+
+echo Line #!randnum! is:
+echo.!randline!
+
+vlc !randline!
+
+pause
