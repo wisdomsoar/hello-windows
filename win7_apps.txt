@@ -1,0 +1,23 @@
+FastStone Image Viewer 8.3
+Git 2.46.2
+f.lux 4.134
+Microsoft .NET Framework 4.8 4.8.03761
+Microsoft Edge 109.0.1518.140
+Microsoft Visual C++ 2008 Redistributable 9.0.30729.6161
+Microsoft Visual C++ 2012 Redistributable 11.0.6.1030
+Microsoft Visual C++ 2012 Redistributable 14.32.31330
+Microsoft Visual C++ 2015-2022 Redistributable 14.32.31332
+Open-Shell 4.4.196
+Opera Stable 95.0.4635.40
+Python 3.8.10
+Update for Microsoft .NET Framework 4.8 (KB4503575)
+VirtualCloneDrive 5.5.2.0
+VLC media player 3.0.21
+Windows 10 Transformation Pack 7.0
+Wireshark 3.2.0
+
+
+
+
+
+
