@@ -15,6 +15,7 @@ VirtualCloneDrive 5.5.2.0
 VLC media player 3.0.21
 Windows 10 Transformation Pack 7.0
 Wireshark 3.2.0
+WinMerge-2.16.56-x64-Setup
 
 
 
